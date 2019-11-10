@@ -1,0 +1,6 @@
+﻿Sau khi sua file, lưu ý: discard là trở về trạng thái ban đầu (mất code)
+	file đang ở trạng thái chưa stage: git checkout -- tên_file.tên_đuôi
+	file đang ở trạng thái đã stage, muon discard:
+	   Discard all file: git reset --hard
+	   Discard file cụ thể: git reset tên_file.tên_đuôi
+Discard all (chua kiem tra): git stash save --keep-index --include-untracked

@@ -1,0 +1,14 @@
+﻿link : https://www.youtube.com/watch?v=hx0WZIWUd-U
+Tag vào commit cuối cùng : 
+		Thêm tag: git tag -a v1.0 -m"@Tag #Henv tag this"
+		Xem tag: git tag
+		Xem chi tiết tag: git show tên_tag
+	Sau đó push: git push origin v1.0
+Chỉ định một commit bất kì: git tag -a v0.1 id_commit
+				Sau đó điền vào notepad++ editor
+
+Rẽ nhánh tại 1 tag bất kỳ: git checkout -b ten_nhanh_moi ten_tag
+
+Xóa một tag: git tag -d ten_tag
+	sau khi xóa kiểm tra list tag: git ls-remote --tags
+	xóa xong push lên server : git push origin --delete ten_tag

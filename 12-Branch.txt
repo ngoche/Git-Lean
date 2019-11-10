@@ -1,0 +1,17 @@
+﻿Thêm một nhánh mới : git branch ten_branch_moi
+Đẩy nhánh mới lên server: git push origin ten_branch_moi
+Xem danh sách các nhánh: git branch
+Qui trình xóa một branch> link: https://i.stack.imgur.com/AKWYx.jpg
+	-kiểm tra các branch tồn tại: git branch
+	-xóa branch: git push origin --delete ten_branch
+	-kiểm tra lại: git branch
+			(vẫn còn trên local)
+	-thực hiện xóa trên local: git branch -D ten_branch
+Quản lý nhánh:
+ Xem các nhánh kèm các commit mới nhất: git branch -v
+					git branch -vv
+ Xem các nhánh đã được merge vào nhánh hiện tại : git branch --merged
+ Xem các nhánh chưa được merge vào nhánh hiện tại: git branch --no-merged
+Làm việc với nhánh từ xa(nhánh server):
+ Xem các nhánh và tag: git ls-remote origin
+ 

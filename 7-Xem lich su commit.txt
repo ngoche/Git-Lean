@@ -1,0 +1,15 @@
+﻿xem chi tiet cac commit : git log --stat
+xem log: git log
+xem log limit: git log -p - 1
+xem log pretty : git log --pretty=oneline 
+xem log có format ngắn gọn gồm message: git log --pretty=format:"%h - %an , %ar: %s" 
+								(nếu chỉ xem message thì chỉ cần "%s" là đủ)
+xem log trong khoảng thời gian nhất định: git log --since=2.weeks 
+					  git log --since=1.hours
+					  ...
+xem log cụ thể : git show id_commit
+	       : git show
+
+Xem tất cả commit beautiful: git log --oneline --decorate
+
+Xem lịch sử một file nào đó: gitk --follow file_name.file_tail

@@ -1,0 +1,14 @@
+﻿Khi đang làm dở công việc ở một nhánh, cần chuyển sang một nhánh khác để "hot fix", Ta lưu công việc đang làm lại 
+trên local, không cần commit lên(cất gọn vào một góc rồi quay lại làm sau):
+
+	câu lệnh: git stash
+		: git stash save
+Xem danh sách các stash: git stash list
+Chuyển sang nhánh khác làm việc, có thể tiếp tục stash bên nhánh đó
+Chuyển sang nhánh cũ làm tiếp: kiểm tra list, cần lấy chỗ code stash thì: git stash apply stash@{vị_trí}
+	Sau đó làm việc với branch cũ bình thường
+Loại bỏ stash nhưng vẫn giữ lại stash trên stash list: git stash drop stash_id
+Loại bỏ stash và loại bỏ luôn stash list: git stash pop
+						(đây là dạng first-in-last-out)
+
+

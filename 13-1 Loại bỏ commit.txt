@@ -1,0 +1,4 @@
+﻿Lưu ý: lệnh này sẽ reset và xóa mất code mới luốn
+Loại bỏ commit gần nhất : git reset --hard HEAD~1
+Loại bỏ số commit : git reset --hard HEAD~(Số commit)
+Nếu bật sẵn source-tre vẫn còn SHA của commit vừa loại bỏ, muốn lấy lại: git reset --hard <SHA-ID>

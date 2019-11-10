@@ -1,0 +1,3 @@
+﻿Merge nhánh: git merge tên_branch
+	nếu có conflig xảy ra nên merge tay đỡ phải dùng tool
+	sau khi merge xong thì commit như bt, lưu ý ko dùng được : git commit --amend

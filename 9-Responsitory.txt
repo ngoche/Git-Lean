@@ -1,0 +1,14 @@
+﻿Tạo mới một reponsitory(kho chứa code): Đăng nhập github >> New responsitory>> copy đường dẫn(ví dụ: https://github.com/ngoche/git.git)
+					Vào thư mục mới, cmd: git clone https://github.com/ngoche/git.git
+					Kiểm tra hành động vừa rồi: git remote
+								    git remote -v
+
+Chia sẻ cho user khác? 
+	Vào thư mục mới, cmd: git init
+			      git remote add (tên, vidu origin) https://github.com/ngoche/git.git
+	Kiểm tra fetch các thông tin mới: git fetch origin
+	Pull dữ liệu về : git pull origin master
+
+Đổi tên origin: git remote rename origin (tên mới vd: origin1)
+Xóa tên origin: git remote rm origin
+ 
