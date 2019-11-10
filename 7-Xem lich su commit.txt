@@ -1,6 +1,7 @@
 ﻿xem chi tiet cac commit : git log --stat
 xem log: git log
-xem log limit: git log -p - 1
+xem log limit: git log -p -1
+	       git log -n 1
 xem log pretty : git log --pretty=oneline 
 xem log có format ngắn gọn gồm message: git log --pretty=format:"%h - %an , %ar: %s" 
 								(nếu chỉ xem message thì chỉ cần "%s" là đủ)

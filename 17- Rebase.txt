@@ -1,0 +1,7 @@
+﻿Từ nhánh deverlop(nhánh phát triển) ta rẽ một nhánh mới tên_nhánh_mới để fix lỗi, tạo chức năng...
+Sau khi hoàn thành công việc ta muốn push thẳng lên nhánh deverlop mà không cần merge:
+Thao tác: Thực hiện commit files đã sửa, không push
+	  Checkout sang deverlop
+	  Gõ lệnh git rebase: git rebase tên_nhánh_mới
+	  Nếu có conflig thì tự giải quyết
+	  Sau đó thực hiện push
