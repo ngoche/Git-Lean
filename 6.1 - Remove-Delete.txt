@@ -1,0 +1,4 @@
+﻿xóa file mà vẫn giữ lại trên máy : git rm --cached tenfile.tenduoifile
+xóa file mà không giữ lại trên máy : git rm tenfile.tenduoifile
+xóa cả thư mục : git rm tenthumuc/\*.tenduoifile
+moving/rename: git mv tenfilecu.tenduoifile tenfilemoi.tenduoifile

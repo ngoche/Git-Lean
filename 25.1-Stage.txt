@@ -3,4 +3,4 @@ Stage all : git add *
 Unstage All: git reset
 Unstage 1 file: git reset tên_file.tên_đuôi
  
-Xem lịch sử chỉnh sửa của file trong trạng thái staged:  git diff staged
+Xem lịch sử chỉnh sửa của file trong trạng thái staged:  git diff --staged

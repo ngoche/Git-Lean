@@ -11,10 +11,7 @@ xem thông tin chi tiết các file đang ở trạng thái staged: git diff --s
 add all file : git add *
 	       git add - a -m"Add all file"
 	       git add all
-xóa file mà vẫn giữ lại trên máy : git rm --cached tenfile.tenduoifile
-xóa file mà không giữ lại trên máy : git rm tenfile.tenduoifile
-xóa cả thư mục : git rm tenthumuc/\*.tenduoifile
-moving/rename: git mv tenfilecu.tenduoifile tenfilemoi.tenduoifile
+
 clear cmd screen git: Ctrl + L
 		 win10 : cls
 
