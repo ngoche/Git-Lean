@@ -5,6 +5,7 @@ Xem configuration: git config --list
 
 video 6:{
 khoi tao 1 folder thanh 1 Reponsitory: git init
+
 add mot file cu the : git add (tenfile.tenDuoiFile)
 
 xem thông tin chi tiết các file đang ở trạng thái staged: git diff --staged
@@ -17,3 +18,10 @@ clear cmd screen git: Ctrl + L
 
 				
 }
+Các bước add git lên responsitory
+echo "# Git-Lean" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/ngoche/Git-Lean.git
+git push -u origin master
