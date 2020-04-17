@@ -1,4 +1,5 @@
 ﻿Tạo file ignore(Lưu ý lệnh phải được gõ trên cmd của Git bash vì window không nhận): touch .gitignore
 Mở file ignore và điền những tên file vào để git bỏ qua những file đó
-	trong một thư mục ignore nếu muốn git tiếp tục tracking thì điền vào thư mục .gitignore: !**tên_file.tên_đuôi
+	trong một thư mục (đã ) ignore nếu muốn git tiếp tục tracking thì điền vào thư mục .gitignore: !**tên_file.tên_đuôi
 	rồi add thư mục đó lên: git add tên_file.tên_đuôi -f
+	hoặc có thể add luôn(bổ sung)
