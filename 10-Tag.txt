@@ -4,6 +4,7 @@ Tag vào commit cuối cùng :
 		Xem tag: git tag
 		Xem chi tiết tag: git show tên_tag
 	Sau đó push: git push origin v1.0
+	(push tat ca cac tag: git push origin --tags
 Chỉ định một commit bất kì: git tag -a v0.1 id_commit
 				Sau đó điền vào notepad++ editor
 
