@@ -1,0 +1,7 @@
+xem git log:
+
+xem general: git log
+xem chi tiet: git log -p
+xem chi tiet co gioi han: git log -p -2
+xem chi tiet bang lenh show: git show
+xem chi tiet bang lenh show co gioi han: git show -2
