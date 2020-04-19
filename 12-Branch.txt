@@ -1,5 +1,6 @@
 ﻿Thêm một nhánh mới : git branch ten_branch_moi
 Đẩy nhánh mới lên server: git push origin ten_branch_moi
+			 : git push --set-upstream origin ten_branch_moi
 Xem danh sách các nhánh: git branch
 Qui trình xóa một branch> link: https://i.stack.imgur.com/AKWYx.jpg
 	-kiểm tra các branch tồn tại: git branch
