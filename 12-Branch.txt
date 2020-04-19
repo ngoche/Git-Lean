@@ -7,7 +7,7 @@ Qui trình xóa một branch> link: https://i.stack.imgur.com/AKWYx.jpg
 	-xóa branch: git push origin --delete ten_branch
 	-kiểm tra lại: git branch
 			(vẫn còn trên local)
-	-thực hiện xóa trên local: git branch -D ten_branch
+	-thực hiện xóa trên local: git branch -d ten_branch
 Quản lý nhánh:
  Xem các nhánh kèm các commit mới nhất: git branch -v
 					git branch -vv
