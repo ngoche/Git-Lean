@@ -16,3 +16,8 @@ Quản lý nhánh:
 Làm việc với nhánh từ xa(nhánh server):
  Xem các nhánh và tag: git ls-remote origin
  
+
+Bổ sung: 
+Xem các nhánh track lẫn nhau: git branch -vv
+tạo một nhánh là nhánh con của nhánh hiện tại(và nhánh mới được track bởi nhánh hiện tại): git checkout --track -b ten_nhanh_moi
+sau đó xem kiểm tra lại : git banch -vv
