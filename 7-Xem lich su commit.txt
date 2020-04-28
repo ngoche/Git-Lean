@@ -16,3 +16,4 @@ Xem tất cả commit beautiful: git log --oneline --decorate
 Xem lịch sử một file nào đó: gitk --follow file_name.file_tail
 
 Bổ sung: xem log và checkdiff hiệu quả: git log -p
+xem log chỉ gồm tên file  ở một commit cụ thể : git show --pretty="" --name-only id_commit
