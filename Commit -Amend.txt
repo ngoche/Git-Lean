@@ -1,0 +1,5 @@
+sau khi commit mot lan, co mot file quen chua commit, khong muon tao ra mot commit moi
+
+add file do len:git add ten_file.ten_duoi_file
+amend: git commit --amend
+sau do thuc hien push
