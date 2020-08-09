@@ -1,0 +1,68 @@
+--tinh tong phi phai thu
+  function cal_total_fee(v_accnum     varchar2,
+                         v_sccode     varchar2,
+                         v_origin_fee number,
+                         v_currency   varchar2,
+                         v_curbal     number,
+                         v_period     number) return t_fee is
+    fee         number;
+    charge_code integer;
+    --v_curbal_tmp number;
+  begin
+  
+    if v_currency = 'VND' then
+      --lay ra muc phi tu tham so muc phi theo so du binh quan
+      select decode(v_currency,
+                    'VND',
+                    ROUND(t.muc_phi_vnd * v_period / 12),
+                    'USD',
+                    ROUND(t.muc_phi_ngoai_te * v_period / 12, 2),
+                    get_curr_exchange(v_currency,
+                                      ROUND(t.muc_phi_ngoai_te * v_period / 12,
+                                            2))),
+             t.charge_code
+        into fee, charge_code
+        from (select s.muc_phi_ngoai_te, s.muc_phi_vnd, s.charge_code
+                from avgbal_fee s
+               where s.tree_code = v_sccode
+                 and sysdate between to_date(s.HIEU_LUC_TU, 'MM/yyyy') and
+                     last_day(to_date(s.HIEU_LUC_DEN, 'MM/yyyy'))
+                 and (
+                     --check dong so huu
+                      (s.charge_code = 4 and exists
+                       (select 1
+                          from cfacct
+                         where cfaccn = v_accnum
+                           and cfatyp = 'D'
+                           and CFRELA = 'JA'))
+                     --check so du toi thieu
+                      or (s.charge_code = 1 and v_curbal < s.so_du_toi_thieu)
+                     --check so du binh quan
+                      or (s.charge_code = 2 and
+                      ((s.so_du_binh_quan_den is null and
+                      get_sdbq(v_accnum) >= s.so_du_binh_quan_tu) or
+                      (s.so_du_binh_quan_den is not null and
+                      get_sdbq(v_accnum) between s.so_du_binh_quan_tu and
+                      s.so_du_binh_quan_den)))
+                     --check so du toi thieu va so du binh quan
+                      or (s.charge_code = 3 and v_curbal < s.so_du_toi_thieu and
+                      ((s.so_du_binh_quan_den is null and
+                      get_sdbq(v_accnum) >= s.so_du_binh_quan_tu) or
+                      (s.so_du_binh_quan_den is not null and
+                      get_sdbq(v_accnum) between s.so_du_binh_quan_tu and
+                      s.so_du_binh_quan_den))))
+               order by s.charge_code desc) t
+       where rownum = 1;
+    else
+      fee         := v_origin_fee;
+      charge_code := 5;
+    end if;
+  
+    return t_fee(fee, charge_code);
+  
+  exception
+    when others then
+      --gan muc phi goc
+      return t_fee(v_origin_fee, 5);
+    
+  end cal_total_fee;
