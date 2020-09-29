@@ -54,10 +54,92 @@
 </div>
 <script>
   window.onload = function(){
-    var w, top;
-    w = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    t = document.body.scrollTop;
-    console.log(w);
+    
+if (window.addEventListener) {
+  window.addEventListener("scroll", function () {fix_sidemenu(); });
+  window.addEventListener("resize", function () {fix_sidemenu(); });  
+  window.addEventListener("touchmove", function () {fix_sidemenu(); });  
+  window.addEventListener("load", function () {fix_sidemenu(); });
+} else if (window.attachEvent) {
+  window.attachEvent("onscroll", function () {fix_sidemenu(); });
+  window.attachEvent("onresize", function () {fix_sidemenu(); });  
+  window.attachEvent("ontouchmove", function () {fix_sidemenu(); });
+  window.attachEvent("onload", function () {fix_sidemenu(); });
+}
+function scrolltop() {
+  var top = 0;
+  if (typeof(window.pageYOffset) == "number") {
+    top = window.pageYOffset;
+  } else if (document.body && document.body.scrollTop) {
+    top = document.body.scrollTop;
+  } else if (document.documentElement && document.documentElement.scrollTop) {
+    top = document.documentElement.scrollTop;
+  }
+  return top;
+}
+function fix_sidemenu() {
+  var w, top;
+  w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  top = scrolltop()    
+/*  if (w < 993 && w > 600) {
+    if (top == 0) {
+      document.getElementById("sidenav").style.top = "144px";
+    }
+    if (top > 0 && top < 100) {
+      document.getElementById("sidenav").style.top = (144 - top) + "px";      
+    }
+    if (top > 100) {
+      document.getElementById("sidenav").style.top = document.getElementById("topnav").offsetHeight + "px";
+      document.getElementById("belowtopnav").style.paddingTop = "44px";    
+      document.getElementById("topnav").style.position = "fixed";    
+      document.getElementById("topnav").style.top = "0";
+      document.getElementById("googleSearch").style.position = "fixed";
+      document.getElementById("googleSearch").style.top = "0";
+      document.getElementById("google_translate_element").style.position = "fixed";
+      document.getElementById("google_translate_element").style.top = "0";
+    } else {
+      document.getElementById("belowtopnav").style.paddingTop = "0";
+      document.getElementById("topnav").style.position = "relative";
+      document.getElementById("googleSearch").style.position = "absolute";
+      document.getElementById("googleSearch").style.top = "";
+      document.getElementById("google_translate_element").style.position = "absolute";
+      document.getElementById("google_translate_element").style.top = "";
+    }
+    document.getElementById("leftmenuinner").style.paddingTop = "0";
+  } else {*/
+
+
+    if (top == 0) {
+      document.getElementById("leftmenuinner").style.top = "112px";      
+    }
+    if (top > 0 && top < 66) {
+      document.getElementById("leftmenuinner").style.top = (112 - top) + "px";      
+    }
+    if (top > 66) {
+      document.getElementById("leftmenuinner").style.top = "44px";
+      if (w > 992) {document.getElementById("leftmenuinner").style.paddingTop = "44px";}
+      // document.getElementById("belowtopnav").style.paddingTop = "44px";    
+      // document.getElementById("topnav").style.position = "fixed";
+      // document.getElementById("topnav").style.top = "0";
+      // document.getElementById("googleSearch").style.position = "fixed";
+      // document.getElementById("googleSearch").style.top = "0";
+      // document.getElementById("google_translate_element").style.position = "fixed";
+      // document.getElementById("google_translate_element").style.top = "0";
+    } else {
+      if (w > 992) {
+        document.getElementById("leftmenuinner").style.paddingTop = (112 - top) + "px";
+      } else { //ELSEN ER NY
+        document.getElementById("leftmenuinner").style.paddingTop = 0;
+      }
+      // document.getElementById("belowtopnav").style.paddingTop = "0";
+      // document.getElementById("topnav").style.position = "relative";
+      // document.getElementById("googleSearch").style.position = "absolute";
+      // document.getElementById("googleSearch").style.top = "";
+      // document.getElementById("google_translate_element").style.position = "absolute";
+      // document.getElementById("google_translate_element").style.top = "";
+    }
+/*  }*/
+}
     let header = document.getElementById('header');
     let sticky = document.getElementById('sticky');
     let bodyHeight = window.innerHeight;
