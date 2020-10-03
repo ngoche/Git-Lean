@@ -7,11 +7,12 @@
   width: 100%;
   height: 68px;
   background: yellow;
+  z-index: 1;
 }
 .container{
-  width: 80%;
+  width: 100%;
   height: 100%;
-  /*background: green;*/
+  transition: 2s;
   float: right;
 }
 .content{
@@ -21,9 +22,10 @@
 }
 .footer{
   float: right;
-  width: 80%;
+  width: 100%;
   background: red;
   box-sizing: content-box;
+  transition: 2s;
 }
 .ctn-control{
   float: left;
@@ -37,6 +39,12 @@
   width: 20%;
   height: 30px;
   background: #c97b7b;
+  transition: 0.8s;
+}
+.say-hi:hover{
+  width:20%;
+  height: 38px;
+  border-radius:0 0 6px 0;
 }
 .intro{
   float: right;
@@ -49,7 +57,7 @@
   background: #11a837;
   position: sticky;
   top:0;
-  z-index: 2;
+  z-index: 1;
 }
 .st-ctrl{
   float: left;
@@ -74,11 +82,8 @@
   display:none;
 }
 .menu-div{
-  padding:0;
-}
-.side{
-  z-index: 1;
-}
+  padding:1;
+} 
 .side-left{
   width: 20%;
   height: 100%;
@@ -89,7 +94,8 @@
   text-align: justify;
   position: fixed;
   top: 0;
-  transition: 3s;
+  transition: 2s;
+  z-index: -1 ;
 }
 .leftmenuinner{
   height: 100%;
@@ -100,4 +106,28 @@
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #333; 
+  width:20px;
+}
+body{
+  /*height: 100%;*/
+  display:inline;
 }
