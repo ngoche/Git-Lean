@@ -7,6 +7,4 @@ var Henv = {
 		else
 			sideLeft.style.display = 'none';
 	},
-	changeLeftMenuPaddingTop: function(){
-	}
 }
