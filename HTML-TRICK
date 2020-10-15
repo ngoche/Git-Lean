@@ -4,7 +4,7 @@ tổng hợp những trick html:
 3. thẻ pre: <pre></pre> viết một bài thơ
 4. thẻ address: tiện lợi cho design footer hoặc một note địa chỉ nào đó
 5. background-image kết hợp background-positon:center + background-repeat: no-repeat + background-size: cover: TÁC DỤNG là đặt một hình ảnh cho toàn background trang
-6. order-list dùng <ol><li>
+6. order-list, Các thẻ đánh số dùng <ol><li>
 7. Design các dòng trong table, trong thẻ giống nhau liên tiếp có các dòng chẵn lẻ bằng thuộc tính Pseudo-elment: nth-child(n)
 8. Luôn phải đặt meta viewport cho trang responsive
 9. Validate form text bằng thuộc tính maxlength
