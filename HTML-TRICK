@@ -19,3 +19,6 @@ tổng hợp những trick html:
 17. Thẻ details vô cùng tiện lợi trong trường hợp hide and unhide element thay vì phải sử dụng javascript
 18. Qoute Tag: <q></q>
 19: Link học dở: https://www.w3schools.com/tags/
+20: "Thuộc tính" line-height: giãn dòng
+21. Xem xét sử dụng fieldset>legend  để "nhóm" form (có thể design background riêng cho cả form). Vì trong lập trình hiện đại ít thấy sử dụng hai tags này
+22. Bắt sự kiện và xử lý theo yêu cầu: document.execCommand https://www.w3schools.com/jsref/met_document_execcommand.asp
