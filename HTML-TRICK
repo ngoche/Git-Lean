@@ -9,3 +9,11 @@ tổng hợp những trick html:
 8. Luôn phải đặt meta viewport cho trang responsive
 9. Validate form text bằng thuộc tính maxlength
 10. Dùng thẻ video để tạo video, xử lý add video youtube, xem thêm cách xử lý media như audio, video trên w3school video phần html tutorial
+11. Dùng thẻ datalist để tạo một form option có khả năng nhập liệu và hỗ trợ tìm kiếm, thẻ này được đặt sau thẻ input, chi tiết tại đây : https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_datalist_create
+12. Tạo thẻ bằng js sử dụng cú pháp: document.createElement , chi tiết https://www.w3schools.com/jsref/dom_obj_datalist.asp
+13. Xử lý event trên browser khi mất mạng - có mạng : attribute : https://www.w3schools.com/tags/ref_eventattributes.asp 
+13. Xử lý responsive - resize window: window.innerWidth. Reference link: https://www.w3schools.com/jsref/prop_win_innerheight.asp
+14. Event Kéo thả element: https://www.w3schools.com/tags/ev_ondrag.asp
+15. Các event hữu ích khách: https://www.w3schools.com/tags/ref_eventattributes.asp
+16. Các attribute hữu ích khác: https://www.w3schools.com/tags/ref_standardattributes.asp
+17. Thẻ details vô cùng tiện lợi trong trường hợp hide and unhide element thay vì phải sử dụng javascript
