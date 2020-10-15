@@ -66,3 +66,13 @@
       return t_fee(v_origin_fee, 5);
     
   end cal_total_fee;
+<-------------------->
+comment cách dùng:
+tạo type: 
+ceate or replace type t_fee as object(
+  fee number,
+  charge_code integer
+)
+<-------------------->
+lấy fee từ type:
+select cal_total_fee(truyền param).fee from dual;
