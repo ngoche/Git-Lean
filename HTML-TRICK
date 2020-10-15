@@ -22,3 +22,9 @@ tổng hợp những trick html:
 20: "Thuộc tính" line-height: giãn dòng
 21. Xem xét sử dụng fieldset>legend  để "nhóm" form (có thể design background riêng cho cả form). Vì trong lập trình hiện đại ít thấy sử dụng hai tags này
 22. Bắt sự kiện và xử lý theo yêu cầu: document.execCommand https://www.w3schools.com/jsref/met_document_execcommand.asp
+23. Copy text bằng execCommand: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+24. <output> tag lấy kết quả của form: https://www.w3schools.com/tags/tag_output.asp
+25. Tìm hiểu khái niệm database liên kết database (golden gate)
+26. <input type="date">
+27. <input type="month">
+28. <input type="range">
