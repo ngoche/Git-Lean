@@ -28,3 +28,6 @@ tổng hợp những trick html:
 26. <input type="date">
 27. <input type="month">
 28. <input type="range">
+29. Sử dụng button thay vì button text hay thẻ a vì sẽ không cần design lại hiển thị
+30. formenctype="text/plain" thuộc tính thường gặp khi làm việc với HttpRequest, HttpResponse nếu có "text/plain" thì ký tự unicode sẽ không bị mã hóa Endcoding: https://www.w3schools.com/tags/att_button_formenctype.asp
+31. Validate form bắt buộc tiện lợi hơn với attribute required, lưu ý cần đặt input trong thẻ form, action dẫn vào controller tương tự window.location.href;
