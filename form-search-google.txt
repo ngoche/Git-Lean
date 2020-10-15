@@ -1,12 +1,13 @@
 <style>
-  input {
+  #keyword {
     height: 30px;
     width: 300px;
     border-radius: 30px;
     border: solid 1px #ccc;
+    padding: 0 0 0 20px;
   }
 
-  button {
+  #henv {
     background: #4285f4;
     height: 30px;
     width: 80px;
@@ -31,11 +32,16 @@
 :-ms-input-placeholder {  
    font-style: italic; 
 } */
+#keyword:focus{
+  outline: none;
+}
 </style>
-<input id="keyword" type="search" placeholder="   Type to search google..">
-<button onclick="henv()">Search</button>
+<form action="action.php">
+<input  required id="keyword" type="search" placeholder="Type to search google..">
+<input id="henv" type="submit" onclick="fhenv()" autofocus="autofocus" value="Search"/>
+</form>
 <script>
-  function henv() {
+  function fhenv() {
     let x = document.getElementById('keyword')
     let linka = 'https://www.google.com/search?q=' + x.value;
     window.open(linka);
