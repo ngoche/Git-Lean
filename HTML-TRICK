@@ -35,3 +35,6 @@ tổng hợp những trick html:
 34. <hr> tag giúp kẻ ngang trang, box...
 35. Thuộc tính có thể sửa nội dung trực tiếp y hệt thẻ input contenteditable :::: https://www.w3schools.com/tags/att_global_contenteditable.asp
 36. onpageshow gần giống window.onload. nhưng onpageshow load everytime when the page loads, onload just run when the first page loads, and cache for others time. onpageshow donot hightly support like onload
+38. onoffline và ononline hai xử lý hữu ích khi browser(hoặc desktop) nối mạng hoặc ngắt mạng
+39. Khi làm nội dung, nếu có những thuật ngữ cần prevent dịch ta có attribute translate="no"
+40. attribute title hữu ích trong khi muốn giải thích chức năng form, button khi lập trình, có thể thay thế tooltip của css luôn
