@@ -34,3 +34,4 @@ tổng hợp những trick html:
 33. <data> tag hỗ trợ set value tương tự các thẻ có attribute value, tuy nhiên với thẻ này có thể hiện text tương tự <p> <div>
 34. <hr> tag giúp kẻ ngang trang, box...
 35. Thuộc tính có thể sửa nội dung trực tiếp y hệt thẻ input contenteditable :::: https://www.w3schools.com/tags/att_global_contenteditable.asp
+36. onpageshow gần giống window.onload. nhưng onpageshow load everytime when the page loads, onload just run when the first page loads, and cache for others time. onpageshow donot hightly support like onload
