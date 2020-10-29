@@ -39,3 +39,4 @@ tổng hợp những trick html:
 39. Khi làm nội dung, nếu có những thuật ngữ cần prevent dịch ta có attribute translate="no"
 40. attribute title hữu ích trong khi muốn giải thích chức năng form, button khi lập trình, có thể thay thế tooltip của css luôn
 42. attribute dir vô cùng hữu ích khi muốn đặt text-align bị "chặn"
+43. <input type="color"> sử dụng js để thay đổi color của phần tử khác hoặc đơn giản là input color :)
