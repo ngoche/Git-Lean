@@ -43,3 +43,6 @@ tổng hợp những trick html:
 44. <input type="search"> có luôn dấu x để xóa nội dung trong form input
 45. <input type="reset" tuyệt vời trong việc reset lại form nhập
 46. https://www.tutorialspoint.com/html5/index.htm Học html5 sớm đê
+47. Bôi vàng(background:yellow) với thẻ mark
+48. <meter  value="2" min="0" max="10"></meter> Tương tự mục 28
+49. Gạch chân dùng thẻ <ins>
