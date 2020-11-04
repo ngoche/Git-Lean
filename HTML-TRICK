@@ -1,6 +1,6 @@
 tổng hợp những trick html:
 1. iframe tag: <iframe> thẻ gắn một trang web khác
-2. thẻ <del>: gạch ngang đoạn text bên trong
+2. thẻ <del>, <s>: gạch ngang đoạn text bên trong hoặc sử dụng css text-decoration: line-through;
 3. thẻ pre: <pre></pre> viết một bài thơ
 4. thẻ address: tiện lợi cho design footer hoặc một note địa chỉ nào đó
 5. background-image kết hợp background-positon:center + background-repeat: no-repeat + background-size: cover: TÁC DỤNG là đặt một hình ảnh cho toàn background trang
