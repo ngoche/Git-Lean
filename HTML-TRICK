@@ -16,7 +16,7 @@ tổng hợp những trick html:
 15. Các event hữu ích khách: https://www.w3schools.com/tags/ref_eventattributes.asp
 16. Các attribute hữu ích khác: https://www.w3schools.com/tags/ref_standardattributes.asp
 17. Thẻ details vô cùng tiện lợi trong trường hợp hide and unhide element thay vì phải sử dụng javascript
-18. Qoute Tag: <q></q>
+18. Qoute Tag: <q></q>, use <blockquoute> for long text
 19: Link học dở: https://www.w3schools.com/tags/
 20: "Thuộc tính" line-height: giãn dòng
 21. Xem xét sử dụng fieldset>legend  để "nhóm" form (có thể design background riêng cho cả form). Vì trong lập trình hiện đại ít thấy sử dụng hai tags này
