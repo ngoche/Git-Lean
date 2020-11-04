@@ -46,3 +46,4 @@ tổng hợp những trick html:
 47. Bôi vàng(background:yellow) với thẻ mark
 48. <meter  value="2" min="0" max="10"></meter> Tương tự mục 28
 49. Gạch chân dùng thẻ <ins>
+50. <output> https://www.w3schools.com/tags/tag_output.asp perform and calculation input value
