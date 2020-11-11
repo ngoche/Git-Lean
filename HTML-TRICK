@@ -48,3 +48,4 @@ tổng hợp những trick html:
 48. Sử dụng button thay vì button text hay thẻ a vì sẽ không cần design lại hiển thị
 49. Gạch chân dùng thẻ <ins>
 50. <output> https://www.w3schools.com/tags/tag_output.asp perform and calculation input value
+51. Clone tag(element): https://www.w3schools.com/tags/tag_template.asp
