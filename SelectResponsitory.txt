@@ -1,0 +1,149 @@
+﻿package bvprop.util.sql;
+
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import oracle.jdbc.OracleTypes;
+
+public class SelectResponsitory {
+
+	/**
+	 * Util call Procedure
+	 * @Henv
+	 * @param procedureName
+	 * @param params
+	 * @param returnObject
+	 * @param methods
+	 * @return
+	 */
+	public static List getDataProcedure(String procedureName, Object returnObject, String[] params, String[] methods) {
+		Connection conn = null;
+		CallableStatement stmt = null;
+		ResultSet resultSet = null;
+		List listData = null;
+		try {
+
+			conn = DataSourceConfiguration.getConnection();
+			String sqlCallProcedure = "{call " + procedureName + "( ?";
+			for(int i = 0; i< params.length; i++){
+				sqlCallProcedure += ",? ";
+			}
+			sqlCallProcedure += ")}";
+			
+			stmt = conn.prepareCall(sqlCallProcedure);
+			stmt.registerOutParameter(1, OracleTypes.CURSOR);
+			
+			for(int i = 0; i< params.length; i++){
+	  			stmt.setString(i + 2, params[i]);
+			}
+			stmt.execute();
+			resultSet = (ResultSet) stmt.getObject(1);
+			listData = new ArrayList();
+			while (resultSet.next()) {
+				for(int i = 0; i < methods.length; i++){
+					/*Lay data tra ve*/
+					String value = resultSet.getString(methods[i]);
+					/*set vao object tra ve*/
+					returnObject = applyValueProperty(returnObject, methods[i], value);
+				}
+				listData.add(returnObject);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listData;
+	}
+
+	/**
+	 * @Henv
+	 * Tuong tu ham setDataFromResult tren he thong BVCare
+	 * @param object
+	 * @param proName
+	 * @param value
+	 * @return
+	 */
+	private static Object applyValueProperty(Object object, String proName, String value) {
+		try {
+			Class[] clazz ={ object.getClass().getDeclaredField(proName).getType()};
+			String proNameUpperFirst = proName.substring(0, 1).toUpperCase() + proName.substring(1);
+			Method setMethod = object.getClass().getDeclaredMethod("set" + proNameUpperFirst, clazz);
+			Class clz = object.getClass().getDeclaredField(proName).getType();
+			if (null == value) {
+				setMethod.invoke(object, new Object[] { null });
+			} 
+			/*set gia tri theo tung kieu du lieu*/
+			else {
+
+				if (Integer.class.equals(clz) || int.class.equals(clz)) {
+					Integer[] valueArr = { new Integer(Integer.parseInt(value))};
+					setMethod.invoke(object, valueArr);
+				} 
+				
+				else if (Long.class.equals(clz) || long.class.equals(clz)) {
+					Long[] valueArr = { new Long(Long.parseLong(value))};
+					setMethod.invoke(object, valueArr);
+				}
+				
+				else if (String.class.equals(clz)) {
+					String[] valueArr = { value };
+					setMethod.invoke(object, valueArr);
+				}
+				
+				else if (Double.class.equals(clz) || double.class.equals(clz)) {
+					Double[] valueArr = { new Double(Double.parseDouble(value)) };
+					setMethod.invoke(object, valueArr);
+				}
+				
+				else if (Float.class.equals(clz) || float.class.equals(clz)) {
+					Float[] valueArr = { new Float(value) };
+					setMethod.invoke(object, valueArr);
+				} 
+				
+				else if (Boolean.class.equals(clz) || boolean.class.equals(clz)) {
+					Boolean[] valueArr = { new Boolean(value) };
+					setMethod.invoke(object,valueArr );
+				} 
+				
+				else if (java.util.Date.class.equals(clz) || Date.class.equals(clz)) {
+					Date[] valueArr = { parse(value, "yyyy-MM-dd HH:mm:ss") };
+					setMethod.invoke(object, valueArr);
+				} 
+				
+				else if (BigDecimal.class.equals(clz)) {
+					BigDecimal[] valueArr = {new BigDecimal(value) };
+					setMethod.invoke(object,valueArr );
+				} 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return object;
+	}
+
+	public static Date parse(String str, String format) {
+		DateFormat sdf = new SimpleDateFormat(format);
+		try {
+			return (Date) sdf.parse(str);
+		} catch (ParseException e) {
+			return new Date(0);
+		}
+	}
+}
