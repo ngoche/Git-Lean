@@ -1,2 +1,15 @@
-js foreach Array Iteration: https://www.w3schools.com/js/js_array_iteration.asp
+1. js foreach Array Iteration: https://www.w3schools.com/js/js_array_iteration.asp
+2. Array is an object
+3 .Avoid String, Number, and Boolean objects. They complicate your code and slow down execution speed.
 
+4. A safer way to break up a string, is to use string addition:document.getElementById("demo").innerHTML = "Hello " +
+"Dolly!";
+5. 
+  var x = "John";             
+  var y = new String("John");
+  // (x === y) is false because x and y have different types (string and object)
+  /*--AND---*/
+  var x = new String("John");             
+  var y = new String("John");
+
+  // (x === y) is false because x and y are different objects
