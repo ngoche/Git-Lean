@@ -1,15 +1,31 @@
-1. js foreach Array Iteration: https://www.w3schools.com/js/js_array_iteration.asp
-2. Array is an object
-3 .Avoid String, Number, and Boolean objects. They complicate your code and slow down execution speed.
-
-4. A safer way to break up a string, is to use string addition:document.getElementById("demo").innerHTML = "Hello " +
-"Dolly!";
+1.  js foreach Array Iteration: https://www.w3schools.com/js/js_array_iteration.asp
+2.  Array is an object
+3.  Avoid String, Number, and Boolean objects. They complicate your code and slow down execution speed.
+4.  A safer way to break up a string, is to use string addition:document.getElementById("demo").innerHTML = "Hello " +
+  "Dolly!";
 5. 
-  var x = "John";             
-  var y = new String("John");
-  // (x === y) is false because x and y have different types (string and object)
-  /*--AND---*/
-  var x = new String("John");             
-  var y = new String("John");
+    var x = "John";             
+    var y = new String("John");
+    // (x === y) is false because x and y have different types (string and object)
+    /*--AND---*/
+    var x = new String("John");             
+    var y = new String("John");
 
-  // (x === y) is false because x and y are different objects
+    // (x === y) is false because x and y are different objects
+6.
+  slice()
+    If a parameter is negative, the position is counted from the end of the string.
+  substring()
+    is similar to slice().
+    The difference is that substring() cannot accept negative indexes.
+  substr()
+    is similar to slice().
+    The difference is that the second parameter specifies the length of the extracted part.
+7.replace()
+  To replace case insensitive, use a regular expression with an /i flag (insensitive)
+  To replace all matches, use a regular expression with a /g flag (global match);
+8.
+  let a = 0.1 + 02; // result 0.30000000000000004
+  let x = (0.1 * 10 + 0.2 * 10) / 10;//result 0.3
+9. JavaScript will try to convert strings to numbers in all numeric operations, but for additional, it's not work. Ex: "10" + "20" = "1020";
+10. Never write a number with a leading zero (like 07).Some JavaScript versions interpret numbers as octal if they are written with a leading zero.
