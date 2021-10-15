@@ -1,3 +1,4 @@
 ﻿Tạo một alias: git config --global alias.st status
 Xem list cấu hình : git config --list
 Xóa một alias : git config --global --unset alias.Tên_Alias
+
