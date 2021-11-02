@@ -1,0 +1,97 @@
+Microsoft Windows [Version 10.0.19043.1288]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\henv>ssh mic@10.5.1.30
+mic@10.5.1.30's password:
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-89-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 02 Nov 2021 08:12:21 AM UTC
+
+  System load:                      0.0
+  Usage of /:                       37.5% of 48.47GB
+  Memory usage:                     32%
+  Swap usage:                       0%
+  Processes:                        207
+  Users logged in:                  1
+  IPv4 address for br-0c1f7b41eedd: 172.18.0.1
+  IPv4 address for br-1421c7a50741: 172.29.0.1
+  IPv4 address for br-57f98df6f7ca: 172.28.0.1
+  IPv4 address for br-5877d9d7e320: 172.24.0.1
+  IPv4 address for br-62e666bf45b6: 172.21.0.1
+  IPv4 address for br-ba5ba61fe839: 172.20.0.1
+  IPv4 address for br-cde0a99d4c3f: 172.23.0.1
+  IPv4 address for docker0:         172.17.0.1
+  IPv4 address for docker_gwbridge: 172.19.0.1
+  IPv4 address for ens160:          10.5.1.30
+
+ * Super-optimized for small spaces - read how we shrank the memory
+   footprint of MicroK8s to make it the smallest full K8s around.
+
+   https://ubuntu.com/blog/microk8s-memory-optimisation
+
+6 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+
+Last login: Tue Nov  2 07:31:16 2021 from 10.2.8.91
+mic@ms01:~$
+mic@ms01:~$ docker ps -a
+CONTAINER ID   IMAGE                      COMMAND                  CREATED          STATUS          PORTS                                                 NAMES
+b5aeed04d1c3   bitnami/kafka:latest       "/opt/bitnami/script…"   28 minutes ago   Up 28 minutes   9092/tcp                                              kafka-server
+3a382ac46816   bitnami/zookeeper:latest   "/opt/bitnami/script…"   29 minutes ago   Up 29 minutes   2181/tcp, 2888/tcp, 3888/tcp, 8080/tcp                zookeeper-server
+f5e425283de7   jboss/keycloak:latest      "/opt/jboss/tools/do…"   4 days ago       Up 4 days       0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 8443/tcp   resources_keycloak_1
+f221d49a56f9   mysql:5.7.36               "docker-entrypoint.s…"   4 days ago       Up 4 days       3306/tcp, 33060/tcp                                   resources_mysql_1
+fd42c4b7189b   10.5.1.30:5001/config      "java -Deureka.clien…"   4 days ago       Up 4 days       0.0.0.0:8090->8090/tcp, :::8090->8090/tcp             resources_config_1
+a74e4b61d064   registry                   "/entrypoint.sh /etc…"   4 days ago       Up 4 days       0.0.0.0:5000->5000/tcp, :::5000->5000/tcp             registry
+mic@ms01:~$ docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED          STATUS          PORTS                                                 NAMES
+b5aeed04d1c3   bitnami/kafka:latest       "/opt/bitnami/script…"   40 minutes ago   Up 40 minutes   9092/tcp                                              kafka-server
+3a382ac46816   bitnami/zookeeper:latest   "/opt/bitnami/script…"   41 minutes ago   Up 41 minutes   2181/tcp, 2888/tcp, 3888/tcp, 8080/tcp                zookeeper-server
+f5e425283de7   jboss/keycloak:latest      "/opt/jboss/tools/do…"   4 days ago       Up 4 days       0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 8443/tcp   resources_keycloak_1
+f221d49a56f9   mysql:5.7.36               "docker-entrypoint.s…"   4 days ago       Up 4 days       3306/tcp, 33060/tcp                                   resources_mysql_1
+fd42c4b7189b   10.5.1.30:5001/config      "java -Deureka.clien…"   4 days ago       Up 4 days       0.0.0.0:8090->8090/tcp, :::8090->8090/tcp             resources_config_1
+a74e4b61d064   registry                   "/entrypoint.sh /etc…"   4 days ago       Up 4 days       0.0.0.0:5000->5000/tcp, :::5000->5000/tcp             registry
+mic@ms01:~$ ls
+ca.crt  docker-compose.yml  mic  mic.pub  Microservice-DH  resources  snap
+mic@ms01:~$ docker exec -it kafka-server /bin/bash
+I have no name!@b5aeed04d1c3:/$ ls
+bin  bitnami  boot  dev  docker-entrypoint-initdb.d  entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root run  run.sh  sbin  srv                                                                     sys  tmp  usr  var
+I have no name!@b5aeed04d1c3:/$ cd opt/bitnami/kafka/bin
+I have no name!@b5aeed04d1c3:/opt/bitnami/kafka/bin$ ls
+connect-distributed.sh        kafka-configs.sh             kafka-delete-records.sh   kafka-metadata-shell.sh        kafka-server-start.sh
+kafka-verifiable-consumer.sh     zookeeper-server-stop.sh
+connect-mirror-maker.sh       kafka-console-consumer.sh    kafka-dump-log.sh         kafka-mirror-maker.sh          kafka-server-stop.sh
+kafka-verifiable-producer.sh     zookeeper-shell.sh
+connect-standalone.sh         kafka-console-producer.sh    kafka-features.sh         kafka-producer-perf-test.sh    kafka-storage.sh
+        trogdor.sh
+kafka-acls.sh                 kafka-consumer-groups.sh     kafka-get-offsets.sh      kafka-reassign-partitions.sh   kafka-streams-application-reset.sh                                                            windows
+kafka-broker-api-versions.sh  kafka-consumer-perf-test.sh  kafka-leader-election.sh  kafka-replica-verification.sh  kafka-topics.sh
+        zookeeper-security-migration.sh
+kafka-cluster.sh              kafka-delegation-tokens.sh   kafka-log-dirs.sh         kafka-run-class.sh             kafka-transactions.sh
+zookeeper-server-start.sh
+I have no name!@b5aeed04d1c3:/opt/bitnami/kafka/bin$ kafka-console-producer.bat --broker-list localhost:9092 --topic demo
+bash: kafka-console-producer.bat: command not found
+I have no name!@b5aeed04d1c3:/opt/bitnami/kafka/bin$ kafka-console-producer.sh--broker-list localhost:9092 --topic demo
+bash: kafka-console-producer.sh--broker-list: command not found
+I have no name!@b5aeed04d1c3:/opt/bitnami/kafka/bin$ kafka-console-producer.sh --broker-list localhost:9092 --topic demo
+>son handsome
+[2021-11-02 08:28:08,618] WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 3 : {demo=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)
+>a he xau trai
+>^CI have no name!@b5aeed04d1c3:/opt/bitnami/kafka/bin$
+I have no name!@b5aeed04d1c3:/opt/bitnami/kafka/bin$ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+
+
+^C^CProcessed a total of 2 messages
+I have no name!@b5aeed04d1c3:/opt/bitnami/kafka/bin$ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic demo --from-beginning
+son handsome
+a he xau trai
+1
+
+sdlfd
+^[[A^[[A
+cd
+q

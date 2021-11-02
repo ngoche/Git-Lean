@@ -1,0 +1,369 @@
+
+C:\Users\henv>ssh mic@10.5.1.30
+mic@10.5.1.30's password:
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-89-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 02 Nov 2021 07:31:15 AM UTC
+
+  System load:                      0.08
+  Usage of /:                       37.5% of 48.47GB
+  Memory usage:                     42%
+  Swap usage:                       0%
+  Processes:                        212
+  Users logged in:                  1
+  IPv4 address for br-0c1f7b41eedd: 172.18.0.1
+  IPv4 address for br-1421c7a50741: 172.29.0.1
+  IPv4 address for br-57f98df6f7ca: 172.28.0.1
+  IPv4 address for br-5877d9d7e320: 172.24.0.1
+  IPv4 address for br-62e666bf45b6: 172.21.0.1
+  IPv4 address for br-ba5ba61fe839: 172.20.0.1
+  IPv4 address for br-cde0a99d4c3f: 172.23.0.1
+  IPv4 address for docker0:         172.17.0.1
+  IPv4 address for docker_gwbridge: 172.19.0.1
+  IPv4 address for ens160:          10.5.1.30
+
+  => There is 1 zombie process.
+
+ * Super-optimized for small spaces - read how we shrank the memory
+   footprint of MicroK8s to make it the smallest full K8s around.
+
+   https://ubuntu.com/blog/microk8s-memory-optimisation
+
+6 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+
+Last login: Tue Nov  2 01:57:40 2021 from 10.2.8.91
+mic@ms01:~$
+mic@ms01:~$ docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED        STATUS        PORTS                                                                     NAMES
+2c0b426cf1b9   bitnami/kafka:latest       "/opt/bitnami/script…"   29 hours ago   Up 29 hours   9092/tcp                                                                  kafka-server
+a6a9856e7f41   bitnami/zookeeper:latest   "/opt/bitnami/script…"   29 hours ago   Up 29 hours   2181/tcp, 2888/tcp, 3888/tcp, 8080/tcp                                    zookeeper-server
+90db4eeec514   bitnami/kafka:3            "/opt/bitnami/script…"   29 hours ago   Up 29 hours   0.0.0.0:9092->9092/tcp, :::9092->9092/tcp                                 mic_kafka_1
+fc27bb6e4b58   bitnami/zookeeper:3.7      "/opt/bitnami/script…"   29 hours ago   Up 29 hours   2888/tcp, 3888/tcp, 0.0.0.0:2181->2181/tcp, :::2181->2181/tcp, 8080/tcp   mic_zookeeper_1
+f5e425283de7   jboss/keycloak:latest      "/opt/jboss/tools/do…"   4 days ago     Up 4 days     0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 8443/tcp                       resources_keycloak_1
+f221d49a56f9   mysql:5.7.36               "docker-entrypoint.s…"   4 days ago     Up 4 days     3306/tcp, 33060/tcp                                                       resources_mysql_1
+fd42c4b7189b   10.5.1.30:5001/config      "java -Deureka.clien…"   4 days ago     Up 4 days     0.0.0.0:8090->8090/tcp, :::8090->8090/tcp                                 resources_config_1
+a74e4b61d064   registry                   "/entrypoint.sh /etc…"   4 days ago     Up 4 days     0.0.0.0:5000->5000/tcp, :::5000->5000/tcp                                 registry
+mic@ms01:~$ docker stop kafka_server
+Error response from daemon: No such container: kafka_server
+mic@ms01:~$ docker stop kafka-server
+kafka-server
+mic@ms01:~$ docker stop mic_kafka_1
+mic_kafka_1
+mic@ms01:~$ docker stop zookeeper-server
+zookeeper-server
+mic@ms01:~$ docker stop mic_zookeeper_1
+mic_zookeeper_1
+mic@ms01:~$ docker ps
+CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS      PORTS                                                 NAMES
+f5e425283de7   jboss/keycloak:latest   "/opt/jboss/tools/do…"   4 days ago   Up 4 days   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 8443/tcp   resources_keycloak_1
+f221d49a56f9   mysql:5.7.36            "docker-entrypoint.s…"   4 days ago   Up 4 days   3306/tcp, 33060/tcp                                   resources_mysql_1
+fd42c4b7189b   10.5.1.30:5001/config   "java -Deureka.clien…"   4 days ago   Up 4 days   0.0.0.0:8090->8090/tcp, :::8090->8090/tcp             resources_config_1
+a74e4b61d064   registry                "/entrypoint.sh /etc…"   4 days ago   Up 4 days   0.0.0.0:5000->5000/tcp, :::5000->5000/tcp             registry
+mic@ms01:~$
+mic@ms01:~$ docker rm kafka-server
+kafka-server
+mic@ms01:~$ docker rm zookeeper-server
+zookeeper-server
+mic@ms01:~$ docker rm mic_kafka_1
+mic_kafka_1
+mic@ms01:~$ docker rm mic_zookeeper_1
+mic_zookeeper_1
+mic@ms01:~$
+mic@ms01:~$ docker ps
+CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS      PORTS                                                 NAMES
+f5e425283de7   jboss/keycloak:latest   "/opt/jboss/tools/do…"   4 days ago   Up 4 days   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 8443/tcp   resources_keycloak_1
+f221d49a56f9   mysql:5.7.36            "docker-entrypoint.s…"   4 days ago   Up 4 days   3306/tcp, 33060/tcp                                   resources_mysql_1
+fd42c4b7189b   10.5.1.30:5001/config   "java -Deureka.clien…"   4 days ago   Up 4 days   0.0.0.0:8090->8090/tcp, :::8090->8090/tcp             resources_config_1
+a74e4b61d064   registry                "/entrypoint.sh /etc…"   4 days ago   Up 4 days   0.0.0.0:5000->5000/tcp, :::5000->5000/tcp             registry
+mic@ms01:~$ docker ps -a
+CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS      PORTS                                                 NAMES
+f5e425283de7   jboss/keycloak:latest   "/opt/jboss/tools/do…"   4 days ago   Up 4 days   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 8443/tcp   resources_keycloak_1
+f221d49a56f9   mysql:5.7.36            "docker-entrypoint.s…"   4 days ago   Up 4 days   3306/tcp, 33060/tcp                                   resources_mysql_1
+fd42c4b7189b   10.5.1.30:5001/config   "java -Deureka.clien…"   4 days ago   Up 4 days   0.0.0.0:8090->8090/tcp, :::8090->8090/tcp             resources_config_1
+a74e4b61d064   registry                "/entrypoint.sh /etc…"   4 days ago   Up 4 days   0.0.0.0:5000->5000/tcp, :::5000->5000/tcp             registry
+mic@ms01:~$
+mic@ms01:~$ docker ps
+CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS      PORTS                                                 NAMES
+f5e425283de7   jboss/keycloak:latest   "/opt/jboss/tools/do…"   4 days ago   Up 4 days   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 8443/tcp   resources_keycloak_1
+f221d49a56f9   mysql:5.7.36            "docker-entrypoint.s…"   4 days ago   Up 4 days   3306/tcp, 33060/tcp                                   resources_mysql_1
+fd42c4b7189b   10.5.1.30:5001/config   "java -Deureka.clien…"   4 days ago   Up 4 days   0.0.0.0:8090->8090/tcp, :::8090->8090/tcp             resources_config_1
+a74e4b61d064   registry                "/entrypoint.sh /etc…"   4 days ago   Up 4 days   0.0.0.0:5000->5000/tcp, :::5000->5000/tcp             registry
+mic@ms01:~$ docker network create app-tier --driver bridge
+Error response from daemon: network with name app-tier already exists
+mic@ms01:~$ docker run -d --name zookeeper-server  --network app-tier  -e ALLOW_ANONYMOUS_LOGIN=yes  bitnami/zookeeper:latest
+3a382ac468164f4faa0556106a94060a1fad927783f5686f2ccf8dacac1e3ab4
+mic@ms01:~$ docker run -d --name kafka-server  --network app-tier  -e ALLOW_PLAINTEXT_LISTENER=yes  -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181  bitnami/kafka:latest
+b5aeed04d1c3a388f90a089d3c0ce1047c94a290282433241b96fd71e827fc86
+mic@ms01:~$ docker run -it --rm \
+>     --network app-tier \
+>     -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181 \
+>     bitnami/kafka:latest kafka-topics.sh --list  --bootstrap-server kafka-server:9092^C
+mic@ms01:~$ docker run -it --rm  --network app-tier  -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181  bitnami/kafka:latest kafka-topics.sh --list  --bootstrap-server kafka-server:9092
+kafka 07:45:40.30
+kafka 07:45:40.30 Welcome to the Bitnami kafka container
+kafka 07:45:40.30 Subscribe to project updates by watching https://github.com/bitnami/bitnami-docker-kafka
+kafka 07:45:40.31 Submit issues and feature requests at https://github.com/bitnami/bitnami-docker-kafka/issues
+kafka 07:45:40.31
+
+
+mic@ms01:~$ run kafka: docker exec -it kafka-server /bin/sh
+
+Command 'run' not found, did you mean:
+
+  command 'srun' from snap slurm (20.02.1)
+  command 'rue' from snap darkdimension-rue (0.0.8)
+  command 'rn' from deb trn4 (4.0-test77-12)
+  command 'crun' from deb crun (0.12.1+dfsg-1)
+  command 'runc' from deb runc (1.0.0~rc95-0ubuntu1~20.04.2)
+  command 'zun' from deb python3-zunclient (4.0.0-0ubuntu1)
+  command 'grun' from deb grun (0.9.3-2)
+  command 'runq' from deb exim4-daemon-heavy (4.93-13ubuntu1.5)
+  command 'runq' from deb exim4-daemon-light (4.93-13ubuntu1.5)
+  command 'runq' from deb sendmail-bin (8.15.2-18)
+  command 'rup' from deb rstat-client (4.0.1-9)
+  command 'srun' from deb slurm-client (19.05.5-1)
+  command 'zrun' from deb moreutils (0.63-1)
+
+See 'snap info <snapname>' for additional versions.
+
+mic@ms01:~$ docker exec -it kafka-server /bin/sh
+$ ls
+bin  bitnami  boot  dev  docker-entrypoint-initdb.d  entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root run  run.sh  sbin  srv                                                                     sys  tmp  usr  var
+$ cd opt
+$ ls
+bitnami
+$ cd bitnami
+$ ls
+common  java  kafka  licenses  scripts
+$ cd kafka
+/bin/sh: 6: cd: can't cd to kafka
+$ ls
+common  java  kafka  licenses  scripts
+$ cd bin
+/bin/sh: 8: cd: can't cd to bin
+$ cd kafka
+/bin/sh: 9: cd: can't cd to kafka
+$ cd /kafka/
+/bin/sh: 10: cd: can't cd to /kafka/
+$ cd /bin/sh/
+/bin/sh: 11: cd: can't cd to /bin/sh/
+$ cd bin/
+/bin/sh: 12: cd: can't cd to bin/
+$ cd ..
+$ ls
+bitnami
+$ cd ..
+$ ls
+bin  bitnami  boot  dev  docker-entrypoint-initdb.d  entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root run  run.sh  sbin  srv                                                                     sys  tmp  usr  var
+$ cd opt
+$ ls
+bitnami
+$ cd /bitnami/
+$ ls
+kafka
+$ cd kafka
+/bin/sh: 21: cd: can't cd to kafka
+$ cd bitnami
+/bin/sh: 22: cd: can't cd to bitnami
+$ ls
+kafka
+$ ls
+kafka
+$ cd kafka
+$ ls
+config  data
+$ cd data
+$ ls
+cleaner-offset-checkpoint  log-start-offset-checkpoint  meta.properties  recovery-point-offset-checkpoint  replication-offset-checkpoint
+$ cd ..
+$ cd config
+$ ls
+$ cd ..
+$ cd ..
+$ ls
+kafka
+$ cd ..
+$ ls
+bin  bitnami  boot  dev  docker-entrypoint-initdb.d  entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root run  run.sh  sbin  srv                                                                     sys  tmp  usr  var
+$ cd bitnami
+$ ls
+kafka
+$ cd kafka
+$ ls
+config  data
+$ cd ..
+$ cd ..
+$ ls
+bin  bitnami  boot  dev  docker-entrypoint-initdb.d  entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root run  run.sh  sbin  srv                                                                     sys  tmp  usr  var
+$ cd opt
+$ ls
+bitnami
+$ cd bitnami
+$ ls
+common  java  kafka  licenses  scripts
+$ cd kafka
+$ ls
+LICENSE  NOTICE  bin  config  libs  licenses  logs  site-docs
+$ cd bin
+$ ls
+connect-distributed.sh        kafka-configs.sh             kafka-delete-records.sh   kafka-metadata-shell.sh        kafka-server-start.sh
+kafka-verifiable-consumer.sh     zookeeper-server-stop.sh
+connect-mirror-maker.sh       kafka-console-consumer.sh    kafka-dump-log.sh         kafka-mirror-maker.sh          kafka-server-stop.sh
+kafka-verifiable-producer.sh     zookeeper-shell.sh
+connect-standalone.sh         kafka-console-producer.sh    kafka-features.sh         kafka-producer-perf-test.sh    kafka-storage.sh
+        trogdor.sh
+kafka-acls.sh                 kafka-consumer-groups.sh     kafka-get-offsets.sh      kafka-reassign-partitions.sh   kafka-streams-application-reset.sh                                                            windows
+kafka-broker-api-versions.sh  kafka-consumer-perf-test.sh  kafka-leader-election.sh  kafka-replica-verification.sh  kafka-topics.sh
+        zookeeper-security-migration.sh
+kafka-cluster.sh              kafka-delegation-tokens.sh   kafka-log-dirs.sh         kafka-run-class.sh             kafka-transactions.sh
+zookeeper-server-start.sh
+$ kafka-topics.sh -zookeeper zookeeper-server:2181 --topic demo --create --partitions 3 --replication-factor 3
+Exception in thread "main" joptsimple.UnrecognizedOptionException: z is not a recognized option
+        at joptsimple.OptionException.unrecognizedOption(OptionException.java:108)
+        at joptsimple.OptionParser.validateOptionCharacters(OptionParser.java:633)
+        at joptsimple.OptionParser.handleShortOptionCluster(OptionParser.java:528)
+        at joptsimple.OptionParser.handleShortOptionToken(OptionParser.java:523)
+        at joptsimple.OptionParserState$2.handleArgument(OptionParserState.java:59)
+        at joptsimple.OptionParser.parse(OptionParser.java:396)
+        at kafka.admin.TopicCommand$TopicCommandOptions.<init>(TopicCommand.scala:517)
+        at kafka.admin.TopicCommand$.main(TopicCommand.scala:47)
+        at kafka.admin.TopicCommand.main(TopicCommand.scala)
+$ kafka-topics.sh --zookeeper zookeeper-server:2181 --topic demo --create --partitions 3 --replication-factor 3
+Exception in thread "main" joptsimple.UnrecognizedOptionException: zookeeper is not a recognized option
+        at joptsimple.OptionException.unrecognizedOption(OptionException.java:108)
+        at joptsimple.OptionParser.handleLongOptionToken(OptionParser.java:510)
+        at joptsimple.OptionParserState$2.handleArgument(OptionParserState.java:56)
+        at joptsimple.OptionParser.parse(OptionParser.java:396)
+        at kafka.admin.TopicCommand$TopicCommandOptions.<init>(TopicCommand.scala:517)
+        at kafka.admin.TopicCommand$.main(TopicCommand.scala:47)
+        at kafka.admin.TopicCommand.main(TopicCommand.scala)
+$ kafka-topics.sh --zookeekper localhost:2181 --list
+Exception in thread "main" joptsimple.UnrecognizedOptionException: zookeekper is not a recognized option
+        at joptsimple.OptionException.unrecognizedOption(OptionException.java:108)
+        at joptsimple.OptionParser.handleLongOptionToken(OptionParser.java:510)
+        at joptsimple.OptionParserState$2.handleArgument(OptionParserState.java:56)
+        at joptsimple.OptionParser.parse(OptionParser.java:396)
+        at kafka.admin.TopicCommand$TopicCommandOptions.<init>(TopicCommand.scala:517)
+        at kafka.admin.TopicCommand$.main(TopicCommand.scala:47)
+        at kafka.admin.TopicCommand.main(TopicCommand.scala)
+$  zookeekper is not a recognized option
+        at joptsimple.OptionException.unrecognizedOption(OptionException.java:108)
+        at joptsimple./bin/sh: 55: zookeekper: not found
+$ /bin/sh: 56: Syntax error: "(" unexpected
+$ OptionParser.handleLongOptionToken(OptionParser.java:510)
+    /bin/sh: 56: Syntax error: "(" unexpected
+$     at joptsimple.OptionParserState$2.handleArgument(OptionParserState.java:56)
+     /bin/sh: 56: Syntax error: "(" unexpected
+$    at joptsimple.OptionParser.parse(OptionParser.java:396)
+        at kaf/bin/sh: 56: Syntax error: "(" unexpected
+$ ka.admin.TopicCommand$TopicCommandOptions.<init>(TopicCommand.scala:517)
+  /bin/sh: 56: Syntax error: "(" unexpected
+$       at kafka.admin.TopicCommand$.main(TopicCommand.scala:47)
+        a/bin/sh: 56: Syntax error: "(" unexpected
+$ t kafka.admin.TopicCommand.main(TopicCommand.scala)
+/bin/sh: 56: Syntax error: "(" unexpected
+$ kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic demo
+Exception in thread "main" joptsimple.UnrecognizedOptionException: zookeeper is not a recognized option
+        at joptsimple.OptionException.unrecognizedOption(OptionException.java:108)
+        at joptsimple.OptionParser.handleLongOptionToken(OptionParser.java:510)
+        at joptsimple.OptionParserState$2.handleArgument(OptionParserState.java:56)
+        at joptsimple.OptionParser.parse(OptionParser.java:396)
+        at kafka.admin.TopicCommand$TopicCommandOptions.<init>(TopicCommand.scala:517)
+        at kafka.admin.TopicCommand$.main(TopicCommand.scala:47)
+        at kafka.admin.TopicCommand.main(TopicCommand.scala)
+$ kafka-topics.sh --create --bootstrap-server localhost:2181 --replication-factor 1 --partitions 1 --topic demo
+[2021-11-02 08:13:32,229] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:32,336] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:32,439] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:32,741] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:33,144] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:33,951] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:35,158] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:36,164] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:37,270] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:38,276] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:39,382] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:40,287] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:41,294] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:42,500] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:43,607] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:44,713] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:45,819] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:46,724] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:47,729] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:48,835] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:49,740] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:50,645] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:51,550] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:52,757] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:53,964] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:54,969] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:56,176] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:56,980] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:57,986] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:13:59,193] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:00,097] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:01,105] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:02,112] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:03,149] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:04,356] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:05,364] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:06,369] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:07,475] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:08,480] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:09,588] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:10,693] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:11,798] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:12,702] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:13,708] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:14,914] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:15,818] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:17,029] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:17,933] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:18,839] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:19,944] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:20,948] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:22,053] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:22,958] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:24,164] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:25,168] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:26,173] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:27,077] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:28,282] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:29,286] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:30,190] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:31,195] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:14:32,100] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:2181) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)
+Error while executing topic command : Timed out waiting for a node assignment. Call: createTopics
+[2021-11-02 08:14:32,218] ERROR org.apache.kafka.common.errors.TimeoutException: Timed out waiting for a node assignment. Call: createTopics
+ (kafka.admin.TopicCommand$)
+$ cls
+/bin/sh: 58: cls: not found
+$ ls
+connect-distributed.sh        kafka-configs.sh             kafka-delete-records.sh   kafka-metadata-shell.sh        kafka-server-start.sh
+kafka-verifiable-consumer.sh     zookeeper-server-stop.sh
+connect-mirror-maker.sh       kafka-console-consumer.sh    kafka-dump-log.sh         kafka-mirror-maker.sh          kafka-server-stop.sh
+kafka-verifiable-producer.sh     zookeeper-shell.sh
+connect-standalone.sh         kafka-console-producer.sh    kafka-features.sh         kafka-producer-perf-test.sh    kafka-storage.sh
+        trogdor.sh
+kafka-acls.sh                 kafka-consumer-groups.sh     kafka-get-offsets.sh      kafka-reassign-partitions.sh   kafka-streams-application-reset.sh                                                            windows
+kafka-broker-api-versions.sh  kafka-consumer-perf-test.sh  kafka-leader-election.sh  kafka-replica-verification.sh  kafka-topics.sh
+        zookeeper-security-migration.sh
+kafka-cluster.sh              kafka-delegation-tokens.sh   kafka-log-dirs.sh         kafka-run-class.sh             kafka-transactions.sh
+zookeeper-server-start.sh
+$ kafka-console-producer.sh --broker-list localhost:9092 --topic test
+>
+[2021-11-02 08:19:10,763] WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 3 : {test=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:19:10,869] WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 4 : {test=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:19:10,976] WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 5 : {test=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)
+[2021-11-02 08:19:11,082] WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 6 : {test=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)
+>
+>sdfsdfsdfdfsd
+>henv
+>^A^A^A^A
